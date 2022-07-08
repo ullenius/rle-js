@@ -1,13 +1,17 @@
 "use strict";
+
+var fs = require("fs");
+var filename = "foobar.txt";
+var encoding = "utf8";
+
+var debug = false;
+
 /* run length encoding JS
 *
 * encoded data stored in an array with [number, string] pairs
 * where the length of string is always 1
 *
 */
-
-var data = "ABBBBBAAAAAAAAAAA";
-//var data = "ABBA";
 
 function encode(val) {
     var result = [];
@@ -43,16 +47,32 @@ function prettyPrint(rleData) {
     return [...rleData].join('');
 }
 
-console.log("Original data:\t", data);
-var rleData = encode(data);
+fs.readFile(filename, encoding, function callback(error, data) {
 
-console.log("RLE encoded:\t", prettyPrint(rleData) );
+    if (error) {
+        console.error(`File error: ${error}`);
+        return -1;
+    }
 
-var decoded = decode(rleData);
-console.log("RLE decoded:\t", decoded );
+    log("Original data:\t", data);
+    var rleData = encode(data);
 
-var savedBytes = data.length - rleData.length;
-console.log("Compression saved bytes:", savedBytes);
-if (savedBytes < 0) {
-    console.log("Negative compression");
+    log("RLE encoded:")
+    console.log( prettyPrint(rleData) );
+
+    var decoded = decode(rleData);
+    log("RLE decoded:");
+    console.log( decoded );
+
+    var savedBytes = data.length - rleData.length;
+    log("Compression saved bytes:", savedBytes);
+    if (savedBytes < 0) {
+        log("Negative compression");
+    }
+});
+
+function log(message) {
+    if (debug) {
+        console.log(message);
+    }
 }
