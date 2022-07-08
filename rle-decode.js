@@ -2,11 +2,8 @@
 
 var stream = require("stream");
 
-/* run length decoding JS
-*
-* encoded data stored in an array with [number, string] pairs
-* where the length of string is always 1 (char)
-*
+/* 
+* run length decoding JS
 */
 
 function decode(data) {

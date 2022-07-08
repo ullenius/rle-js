@@ -2,12 +2,12 @@
 
 var fs = require("fs");
 var stream = require("stream");
-var MAX = 9
+var MAX = 9; // FIXME use hex for better compression
 
 /* run length encoding JS
 *
 * encoded data stored in an array with [number, string] pairs
-* where the length of string is always 1
+* where the length of string is always 1 digit
 *
 */
 
