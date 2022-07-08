@@ -4,7 +4,9 @@ var fs = require("fs");
 var filename = "foobar.txt";
 var encoding = "utf8";
 
-var debug = false;
+var stream = require("stream");
+
+var debug = true;
 
 /* run length encoding JS
 *
@@ -29,7 +31,7 @@ function encode(val) {
             counter = 1;
         }
     }
-    return result;
+    return prettyPrint(result);
 }
 
 function decode(data) {
@@ -47,18 +49,20 @@ function prettyPrint(rleData) {
     return [...rleData].join('');
 }
 
-fs.readFile(filename, encoding, function callback(error, data) {
+var transformStream = new stream.Transform();
+transformStream._transform = function foo(chunk, encoding, callback) {
+    transformStream.push( encode(chunk.toString()) );
+    callback();
+};
 
-    if (error) {
-        console.error(`File error: ${error}`);
-        return -1;
-    }
+process.stdin.pipe(transformStream).pipe(process.stdout);
 
+/*
     log("Original data:\t", data);
     var rleData = encode(data);
 
     log("RLE encoded:")
-    console.log( prettyPrint(rleData) );
+    ( prettyPrint(rleData) );
 
     var decoded = decode(rleData);
     log("RLE decoded:");
@@ -70,6 +74,7 @@ fs.readFile(filename, encoding, function callback(error, data) {
         log("Negative compression");
     }
 });
+*/
 
 function log(message) {
     if (debug) {
