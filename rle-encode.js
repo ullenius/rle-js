@@ -30,17 +30,6 @@ function encode(val) {
     return prettyPrint(result);
 }
 
-function decode(data) {
-    var result = "";
-    for (var i = 0; i < data.length - 1; i++) {
-        var n = data[i];
-        var letter = data[i + 1];
-        result += letter.repeat(n); // coercion to number
-        i++;
-    }
-    return result;
-}
-
 function prettyPrint(rleData) {
     return [...rleData].join('');
 }
