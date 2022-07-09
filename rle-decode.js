@@ -1,6 +1,6 @@
 "use strict";
 
-var stream = require("stream");
+var transformStream= require("./transform-stream.js");
 
 /*
 * run length decoding JS
@@ -17,11 +17,5 @@ function decode(data) {
     }
     return result;
 }
-
-var transformStream = new stream.Transform();
-transformStream._transform = function foo(chunk, encoding, callback) {
-    transformStream.push( decode(chunk.toString()) );
-    callback();
-};
 
 process.stdin.pipe(transformStream).pipe(process.stdout);

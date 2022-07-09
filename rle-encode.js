@@ -1,7 +1,8 @@
 "use strict";
 
 var fs = require("fs");
-var stream = require("stream");
+var transformStream = require("./transform-stream.js");
+
 var MAX = 9;
 
 /* run length encoding JS
@@ -34,11 +35,5 @@ function encode(val) {
 function prettyPrint(rleData) {
     return [...rleData].join("");
 }
-
-var transformStream = new stream.Transform();
-transformStream._transform = function transform(chunk, encoding, callback) {
-    transformStream.push( encode(chunk.toString()) );
-    callback();
-};
 
 process.stdin.pipe(transformStream).pipe(process.stdout);
