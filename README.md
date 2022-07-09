@@ -23,7 +23,7 @@ $ node rle-decode.js < rle-encoded.txt
 ## Running tests
 Run `run-tests.sh` bash script to invoke the unit tests.
 
-They are written using my port of `jstinytest` which is bundled
+They are written using my fork of `jstinytest` which is bundled
 inside `tests/tinytest.js`.
 
 ## Licence

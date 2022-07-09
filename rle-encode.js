@@ -36,4 +36,5 @@ function prettyPrint(rleData) {
     return [...rleData].join("");
 }
 
-process.stdin.pipe(transformStream).pipe(process.stdout);
+var transform = transformStream.create( encode );
+process.stdin.pipe(transform).pipe(process.stdout);

@@ -1,6 +1,6 @@
 "use strict";
 
-var transformStream= require("./transform-stream.js");
+var transformStream = require("./transform-stream.js");
 
 /*
 * run length decoding JS
@@ -18,4 +18,5 @@ function decode(data) {
     return result;
 }
 
-process.stdin.pipe(transformStream).pipe(process.stdout);
+var transform = transformStream.create( decode );
+process.stdin.pipe(transform).pipe(process.stdout);
