@@ -11,29 +11,33 @@ var setup = function beforeAll() {
 }();
 
 tests({
-    "short line encoding" : function test() {
+    "short line encoding" : function shortLine() {
         var input = "AAABBBAAA";
         var expected = "3A3B3A";
-        var actual = encode(input);
 
+        var actual = encode(input);
         assertEquals(expected, actual);
     },
-    "encode 10 repeated characters" : function test() {
+    "encode 10 repeated characters" : function longEncoding() {
         var input = "A".repeat(10);
         var expected = "9A1A";
-        var actual = encode(input);
 
+        var actual = encode(input);
         assertEquals(expected, actual);
     },
     "multiline encoding" : function multiline() {
-
         var text = "ABBA\nBBB\nAAA";
         var expected = "1A2B1A1\n3B1\n3A";
-        var actual = encode(text);
 
+        var actual = encode(text);
+        assertEquals(expected, actual);
+    },
+    "super long text" : function superLong() {
+        var text = "A".repeat(100);
+        var expected = "9A".repeat(11) + "1A";
+
+        var actual = encode(text);
         assertEquals(expected, actual);
     }
 
-
 });
-
