@@ -32,7 +32,7 @@ function encode(val) {
 }
 
 function prettyPrint(rleData) {
-    return [...rleData].join('');
+    return [...rleData].join("");
 }
 
 var transformStream = new stream.Transform();

@@ -2,7 +2,7 @@
 
 var stream = require("stream");
 
-/* 
+/*
 * run length decoding JS
 */
 module.exports = decode;
@@ -16,10 +16,6 @@ function decode(data) {
         i++;
     }
     return result;
-}
-
-function prettyPrint(rleData) {
-    return [...rleData].join('');
 }
 
 var transformStream = new stream.Transform();
