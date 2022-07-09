@@ -2,7 +2,7 @@
 
 var fs = require("fs");
 var stream = require("stream");
-var MAX = 9; // FIXME use hex for better compression
+var MAX = 9;
 
 /* run length encoding JS
 *
@@ -35,9 +35,11 @@ function prettyPrint(rleData) {
 }
 
 var transformStream = new stream.Transform();
-transformStream._transform = function foo(chunk, encoding, callback) {
+transformStream._transform = function transform(chunk, encoding, callback) {
     transformStream.push( encode(chunk.toString()) );
     callback();
 };
 
 process.stdin.pipe(transformStream).pipe(process.stdout);
+
+module.exports = encode;
