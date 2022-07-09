@@ -1,6 +1,6 @@
-# rle-js - Run-length encoding
+# rle-js
 
-* [Run-length encoding](https://en.wikipedia.org/wiki/Run-length_encoding) & decoding in JS.
+* [Run-length encoding](https://en.wikipedia.org/wiki/Run-length_encoding) and decoding in JS.
 
 ## Features
 * Vanilla node - no dependencies.
@@ -19,14 +19,12 @@ $ node rle-decode.js < rle-encoded.txt
 
 ## Requirements
 * Node v8.x
-* `npm` is *not* required.
 
 ## Running tests
 Run `run-tests.sh` bash script to invoke the unit tests.
 
 They are written using my port of `jstinytest` which is bundled
 inside `tests/tinytest.js`.
-
 
 ## Licence
 LGPL v2.1 only.
