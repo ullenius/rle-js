@@ -5,6 +5,7 @@ var stream = require("stream");
 /* 
 * run length decoding JS
 */
+module.exports = decode;
 
 function decode(data) {
     var result = "";

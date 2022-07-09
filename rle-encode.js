@@ -10,6 +10,7 @@ var MAX = 9;
 * where the length of string is always 1 digit
 *
 */
+module.exports = encode;
 
 function encode(val) {
     var result = [];
@@ -41,5 +42,3 @@ transformStream._transform = function transform(chunk, encoding, callback) {
 };
 
 process.stdin.pipe(transformStream).pipe(process.stdout);
-
-module.exports = encode;
